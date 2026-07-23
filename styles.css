@@ -1,0 +1,795 @@
+/* =====================================================================
+   SUTOS CO. — Hoja de estilos
+   Estética "interfaz espacial" + glassmorfismo.
+   Organizado por secciones: variables, base, utilidades, navbar, hero,
+   secciones/tarjetas, proyectos, contacto, footer, animaciones, responsive.
+   ===================================================================== */
+
+/* ---------------------- 1. Variables de marca ---------------------- */
+:root {
+  /* Paleta de marca */
+  --color-rosa: #F06AB4;
+  --color-magenta: #C13FA0;
+  --color-purpura: #7A3B94;
+  --color-purpura-oscuro: #3B1B4E;
+
+  --color-texto: #F5F0FF;
+  --color-texto-secundario: #B9AECD;
+
+  /* Degradado de marca (rosa -> púrpura), usado en títulos y botones */
+  --degradado-marca: linear-gradient(135deg, var(--color-rosa) 0%, var(--color-magenta) 45%, var(--color-purpura) 100%);
+
+  /* Fondo cósmico */
+  --fondo-inicio: #07040F;
+  --fondo-fin: #14082A;
+
+  /* Cristal (glassmorfismo) */
+  --glass-bg: rgba(255, 255, 255, 0.06);
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --glass-blur: blur(18px) saturate(140%);
+  --glass-shadow: 0 8px 40px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  --glass-radius: 24px;
+
+  --navbar-height: 84px;
+  --transicion-suave: 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ---------------------- 2. Reset y base ---------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* El fondo cósmico se define en <html>, no en <body>: si estuviera en body,
+   su capa de pintado quedaría delante del canvas #starfield (z-index: -1) y
+   taparía por completo el campo de estrellas. Puesto en html, se pinta como
+   fondo del "canvas" del documento, por detrás de las estrellas. */
+html {
+  scroll-behavior: smooth;
+  background: radial-gradient(ellipse 90% 60% at 15% 0%, rgba(193, 63, 160, 0.25), transparent 60%),
+              radial-gradient(ellipse 80% 55% at 100% 15%, rgba(122, 59, 148, 0.28), transparent 55%),
+              radial-gradient(ellipse 70% 50% at 50% 100%, rgba(240, 106, 180, 0.12), transparent 60%),
+              linear-gradient(180deg, var(--fondo-inicio) 0%, var(--fondo-fin) 100%);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
+  font-weight: 400;
+  color: var(--color-texto);
+  background: transparent;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Foco visible accesible en toda la página */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--color-rosa);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+h1, h2, h3 {
+  font-weight: 800;
+  margin: 0;
+  line-height: 1.15;
+}
+
+p {
+  color: var(--color-texto-secundario);
+  line-height: 1.75;
+  margin: 0 0 1rem;
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+/* Canvas del campo de estrellas: fijo, detrás de todo, no bloquea clics */
+#starfield {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* ---------------------- 3. Utilidades ---------------------- */
+
+/* Clase de cristal reutilizable en navbar y tarjetas */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--glass-radius);
+  box-shadow: var(--glass-shadow);
+}
+
+.eyebrow {
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-rosa);
+  margin-bottom: 0.75rem;
+}
+
+.section {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: clamp(4rem, 8vw, 7rem) 1.5rem;
+  scroll-margin-top: var(--navbar-height);
+}
+
+.section__title {
+  font-size: clamp(1.9rem, 4vw, 2.75rem);
+  background: var(--degradado-marca);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 2.5rem;
+}
+
+.card {
+  padding: clamp(1.75rem, 4vw, 3rem);
+}
+
+.card--wide {
+  width: 100%;
+}
+
+.card--center {
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Botones */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.9rem 1.8rem;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform var(--transicion-suave), box-shadow var(--transicion-suave), background var(--transicion-suave);
+  white-space: nowrap;
+}
+
+.btn--primary {
+  background: var(--degradado-marca);
+  color: #FFFFFF;
+  box-shadow: 0 8px 30px rgba(193, 63, 160, 0.45);
+}
+
+.btn--primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 36px rgba(193, 63, 160, 0.6);
+}
+
+.btn--ghost {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--glass-border);
+  color: var(--color-texto);
+}
+
+.btn--ghost:hover {
+  transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.btn__handle {
+  color: var(--color-rosa);
+  font-weight: 700;
+}
+
+.btn--large {
+  padding: 1.1rem 2.4rem;
+  font-size: 1.05rem;
+  margin-top: 1.75rem;
+}
+
+.icon-instagram {
+  width: 1.2em;
+  height: 1.2em;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
+/* Insignia con degradado (fecha de fundación) */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.1rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  margin-bottom: 1.75rem;
+}
+
+.badge--date {
+  background: rgba(240, 106, 180, 0.12);
+  border: 1px solid rgba(240, 106, 180, 0.35);
+  color: var(--color-texto);
+}
+
+.badge--date strong {
+  background: var(--degradado-marca);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.badge--status {
+  background: rgba(122, 59, 148, 0.25);
+  border: 1px solid rgba(240, 106, 180, 0.4);
+  color: var(--color-rosa);
+  font-weight: 600;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  margin-bottom: 0;
+}
+
+.badge__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--color-rosa);
+  box-shadow: 0 0 0 0 rgba(240, 106, 180, 0.7);
+  animation: pulso-badge 1.8s infinite;
+}
+
+/* Marcador de posición para imágenes que fallan al cargar (logo/perfil) */
+.img-fallback {
+  position: relative;
+  background: var(--degradado-marca);
+  min-height: 60px;
+  min-width: 60px;
+  border-radius: 50%;
+}
+
+.img-fallback::after {
+  content: 'S';
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  color: #fff;
+  font-size: 1.4em;
+}
+
+/* ---------------------- 4. Navbar ---------------------- */
+.navbar {
+  position: fixed;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(1200px, 92vw);
+  z-index: 100;
+  border-radius: var(--glass-radius);
+  transition: box-shadow var(--transicion-suave), background var(--transicion-suave);
+}
+
+.navbar.is-scrolled {
+  background: rgba(20, 8, 42, 0.55);
+  box-shadow: 0 10px 44px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.navbar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.7rem 1.5rem;
+}
+
+.navbar__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.navbar__logo {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  object-fit: cover;
+  filter: drop-shadow(0 0 8px rgba(240, 106, 180, 0.55));
+}
+
+.navbar__menu {
+  display: flex;
+  gap: clamp(1rem, 2vw, 2.2rem);
+}
+
+.navbar__link {
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--color-texto-secundario);
+  position: relative;
+  padding: 0.4rem 0.1rem;
+  transition: color var(--transicion-suave);
+}
+
+.navbar__link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 2px;
+  background: var(--degradado-marca);
+  transition: width var(--transicion-suave);
+  border-radius: 2px;
+}
+
+.navbar__link:hover,
+.navbar__link.is-active {
+  color: var(--color-texto);
+}
+
+.navbar__link:hover::after,
+.navbar__link.is-active::after {
+  width: 100%;
+}
+
+.navbar__toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+.navbar__toggle span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--color-texto);
+  border-radius: 2px;
+  transition: transform var(--transicion-suave), opacity var(--transicion-suave);
+}
+
+.navbar__toggle.is-open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.navbar__toggle.is-open span:nth-child(2) {
+  opacity: 0;
+}
+
+.navbar__toggle.is-open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ---------------------- 5. Hero ---------------------- */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: calc(var(--navbar-height) + 2rem) 1.5rem 4rem;
+  overflow: hidden;
+}
+
+.hero__glow {
+  position: absolute;
+  top: 12%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(720px, 90vw);
+  height: min(720px, 90vw);
+  background: radial-gradient(circle, rgba(240, 106, 180, 0.25) 0%, rgba(122, 59, 148, 0.12) 45%, transparent 72%);
+  filter: blur(10px);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.hero__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 780px;
+}
+
+.hero__logo-wrap {
+  margin-bottom: 2rem;
+  animation: flotar 7s ease-in-out infinite;
+}
+
+.hero__logo {
+  width: clamp(110px, 16vw, 170px);
+  height: clamp(110px, 16vw, 170px);
+  border-radius: 50%;
+  object-fit: cover;
+  filter: drop-shadow(0 0 30px rgba(240, 106, 180, 0.55)) drop-shadow(0 0 60px rgba(122, 59, 148, 0.4));
+}
+
+.hero__title {
+  font-size: clamp(2.6rem, 8vw, 5rem);
+  letter-spacing: 0.06em;
+  background: var(--degradado-marca);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero__subtitle {
+  margin-top: 1.1rem;
+  font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+  color: var(--color-texto-secundario);
+  letter-spacing: 0.02em;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+
+/* Indicador de scroll animado */
+.scroll-indicator {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0.75;
+  transition: opacity var(--transicion-suave);
+}
+
+.scroll-indicator:hover {
+  opacity: 1;
+}
+
+.scroll-indicator__mouse {
+  display: block;
+  width: 26px;
+  height: 42px;
+  border: 2px solid var(--color-texto-secundario);
+  border-radius: 14px;
+  position: relative;
+}
+
+.scroll-indicator__wheel {
+  position: absolute;
+  top: 7px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 8px;
+  border-radius: 2px;
+  background: var(--degradado-marca);
+  animation: scroll-wheel 1.8s ease-in-out infinite;
+}
+
+/* ---------------------- 6. La Compañía / El Creador ---------------------- */
+.card--split {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: clamp(1.75rem, 4vw, 3rem);
+  align-items: center;
+}
+
+.creador__photo-wrap {
+  display: flex;
+  justify-content: center;
+}
+
+.creador__photo {
+  width: clamp(140px, 20vw, 200px);
+  height: clamp(140px, 20vw, 200px);
+  border-radius: 50%;
+  object-fit: cover;
+  padding: 5px;
+  background: var(--degradado-marca);
+  background-clip: padding-box, border-box;
+  border: 5px solid transparent;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08), 0 0 40px rgba(240, 106, 180, 0.4);
+}
+
+.creador__name {
+  font-size: clamp(1.3rem, 3vw, 1.7rem);
+  margin-bottom: 0.85rem;
+}
+
+.creador__handle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  color: var(--color-rosa);
+  margin-bottom: 1.25rem;
+  transition: color var(--transicion-suave), transform var(--transicion-suave);
+}
+
+.creador__handle:hover {
+  color: var(--color-texto);
+  transform: translateX(3px);
+}
+
+.creador__bio {
+  margin: 0;
+}
+
+/* ---------------------- 7. Proyectos ---------------------- */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 2.5rem;
+}
+
+.stat-card {
+  padding: 1.75rem 1rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.stat-card__number {
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  font-weight: 800;
+  background: var(--degradado-marca);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.stat-card__label {
+  font-size: 0.85rem;
+  color: var(--color-texto-secundario);
+  letter-spacing: 0.03em;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.project-card {
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  will-change: transform;
+}
+
+.project-card__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.project-card__title {
+  font-size: 1.3rem;
+  background: var(--degradado-marca);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.project-card__desc {
+  margin: 0;
+}
+
+/* Tarjeta "Próximamente": atenuada, con borde punteado */
+.project-card--soon {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1.5px dashed rgba(255, 255, 255, 0.18);
+  box-shadow: none;
+  backdrop-filter: blur(8px);
+}
+
+.project-card--soon .project-card__title {
+  -webkit-text-fill-color: unset;
+  background: none;
+  color: var(--color-texto-secundario);
+}
+
+.project-card--soon .project-card__desc {
+  opacity: 0.75;
+}
+
+/* ---------------------- 8. Contacto ---------------------- */
+.contacto__text {
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+/* ---------------------- 9. Footer ---------------------- */
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 3rem 1.5rem 2.5rem;
+  text-align: center;
+  color: var(--color-texto-secundario);
+  font-size: 0.85rem;
+}
+
+.footer__logo {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+  opacity: 0.9;
+}
+
+.footer__text {
+  margin: 0;
+}
+
+.footer__link {
+  color: var(--color-rosa);
+  font-weight: 600;
+  transition: color var(--transicion-suave);
+}
+
+.footer__link:hover {
+  color: var(--color-texto);
+}
+
+/* ---------------------- 10. Animaciones ---------------------- */
+@keyframes flotar {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-16px); }
+}
+
+@keyframes scroll-wheel {
+  0% { opacity: 1; top: 7px; }
+  70% { opacity: 0; top: 22px; }
+  100% { opacity: 0; top: 22px; }
+}
+
+@keyframes pulso-badge {
+  0% { box-shadow: 0 0 0 0 rgba(240, 106, 180, 0.6); }
+  70% { box-shadow: 0 0 0 8px rgba(240, 106, 180, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(240, 106, 180, 0); }
+}
+
+/* Animación de entrada al hacer scroll (fade + subida ligera) */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Elevación + inclinación 3D sutil en tarjetas (el ángulo lo aplica script.js) */
+.card,
+.stat-card,
+.project-card {
+  transition: transform var(--transicion-suave), box-shadow var(--transicion-suave);
+  transform-style: preserve-3d;
+}
+
+.card:hover,
+.stat-card:hover,
+.project-card:hover {
+  box-shadow: 0 16px 50px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+/* ---------------------- 11. prefers-reduced-motion ---------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+  .card:hover,
+  .stat-card:hover,
+  .project-card:hover {
+    transform: none !important;
+  }
+}
+
+/* ---------------------- 12. Responsive ---------------------- */
+@media (max-width: 900px) {
+  .card--split {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .creador__handle {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 720px) {
+  .navbar__menu {
+    position: absolute;
+    top: calc(100% + 0.75rem);
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem 0;
+    background: rgba(20, 8, 42, 0.85);
+    backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--glass-radius);
+    box-shadow: var(--glass-shadow);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: opacity var(--transicion-suave), transform var(--transicion-suave), visibility var(--transicion-suave);
+  }
+
+  .navbar__menu.is-open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .navbar__toggle {
+    display: flex;
+  }
+
+  .stats {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero__actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero__actions .btn {
+    justify-content: center;
+    width: 100%;
+  }
+}

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ===================== SEO / Meta tags ===================== -->
+  <title>Sutos Co. — Tech born from curiosity</title>
+  <meta name="description" content="Sutos Co. is an independent tech project — apps, games, and AI built by learning as you go, no fear of starting from scratch." />
+  <meta name="author" content="Sutos Co." />
+  <link rel="canonical" href="https://sutosco.github.io/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Sutos Co. — Tech born from curiosity" />
+  <meta property="og:description" content="Apps, games, and AI built from pure curiosity. Check out what Sutos Co. is working on." />
+  <meta property="og:image" content="assets/logo.png" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Sutos Co. — Tech born from curiosity" />
+  <meta name="twitter:description" content="Apps, games, and AI built from pure curiosity. Check out what Sutos Co. is working on." />
+  <meta name="twitter:image" content="assets/logo.png" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="apple-touch-icon" href="assets/favicon.png" />
+
+  <!-- Font: Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Starfield canvas: renders behind all content -->
+  <canvas id="starfield" aria-hidden="true"></canvas>
+
+  <!-- ===================== NAVBAR ===================== -->
+  <header class="navbar glass" id="navbar">
+    <div class="navbar__inner">
+      <a href="#home" class="navbar__brand">
+        <img src="assets/logo.png" alt="Sutos Co. logo" class="navbar__logo" onerror="this.classList.add('img-fallback')" />
+        <span class="navbar__brand-text">Sutos Co.</span>
+      </a>
+
+      <button class="navbar__toggle" id="navToggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navMenu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="navbar__menu" id="navMenu">
+        <a href="#home" class="navbar__link">Home</a>
+        <a href="#company" class="navbar__link">The Company</a>
+        <a href="#creator" class="navbar__link">The Creator</a>
+        <a href="#projects" class="navbar__link">Projects</a>
+        <a href="#contact" class="navbar__link">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ===================== HERO ===================== -->
+    <section id="home" class="hero">
+      <div class="hero__glow" aria-hidden="true"></div>
+
+      <div class="hero__content">
+        <div class="hero__logo-wrap">
+          <img src="assets/logo.png" alt="Sutos Co. logo" class="hero__logo" onerror="this.classList.add('img-fallback')" />
+        </div>
+
+        <h1 class="hero__title">SUTOS CO.</h1>
+        <p class="hero__subtitle">Tech built from pure curiosity.</p>
+
+        <div class="hero__actions">
+          <a href="#projects" class="btn btn--primary">See projects</a>
+          <a href="https://instagram.com/sutosco" target="_blank" rel="noopener" class="btn btn--ghost">
+            Follow us on Instagram <span class="btn__handle">@sutosco</span>
+          </a>
+        </div>
+      </div>
+
+      <a href="#company" class="scroll-indicator" aria-label="Scroll down">
+        <span class="scroll-indicator__mouse">
+          <span class="scroll-indicator__wheel"></span>
+        </span>
+      </a>
+    </section>
+
+    <!-- ===================== COMPANY ===================== -->
+    <section id="company" class="section">
+      <p class="eyebrow reveal">Our story</p>
+      <h2 class="section__title reveal">The Company</h2>
+
+      <div class="card card--wide glass reveal">
+        <span class="badge badge--date">
+          <strong>Nov 12, 2023</strong> — Founded
+        </span>
+
+        <p>
+          Sutos Co. started on November 12, 2023 — founded by a 12-year-old
+          who just couldn't stop thinking about tech. No boardroom, no pitch
+          deck. Just a notebook, some free time after school, and one idea:
+          build things instead of only using what everyone else made.
+        </p>
+        <p>
+          From day one it's been about learning for real — apps that solve
+          small problems, games that mess with new ideas, and AI trained to
+          explore what tech can actually mean for people. Every line of code
+          is a lesson: write it, break it, fix it, repeat.
+        </p>
+        <p>
+          The philosophy's simple: you learn by building. You don't need to
+          know everything to start, or have years of experience — just enough
+          curiosity to jump in, and the stubbornness to keep going even when
+          you're starting from literally nothing.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===================== CREATOR ===================== -->
+    <section id="creator" class="section">
+      <p class="eyebrow reveal">Who's behind this</p>
+      <h2 class="section__title reveal">The Creator</h2>
+
+      <div class="card card--wide card--split glass reveal">
+        <div class="creador__photo-wrap">
+          <img src="assets/perfil.jpg" alt="Profile photo of Sutos Co.'s founder" class="creador__photo" onerror="this.classList.add('img-fallback')" />
+        </div>
+
+        <div class="creador__info">
+          <h3 class="creador__name">Founder of Sutos Co.</h3>
+
+          <a href="https://instagram.com/danibritt011" target="_blank" rel="noopener" class="creador__handle">
+            <!-- Instagram icon (inline SVG) -->
+            <svg viewBox="0 0 24 24" class="icon-instagram" aria-hidden="true">
+              <path d="M12 2.2c3.2 0 3.58.01 4.85.07 1.17.05 1.8.24 2.22.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.17.42.36 1.05.41 2.22.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.24 1.8-.41 2.22-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.17-1.05.36-2.22.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.24-2.22-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.17-.42-.36-1.05-.41-2.22-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.24-1.8.41-2.22.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.17 1.05-.36 2.22-.41C8.42 2.21 8.8 2.2 12 2.2Zm0 1.8c-3.14 0-3.5.01-4.73.07-.96.04-1.48.2-1.83.34-.46.18-.79.39-1.14.74-.35.35-.56.68-.74 1.14-.14.35-.3.87-.34 1.83-.06 1.23-.07 1.59-.07 4.73s.01 3.5.07 4.73c.04.96.2 1.48.34 1.83.18.46.39.79.74 1.14.35.35.68.56 1.14.74.35.14.87.3 1.83.34 1.23.06 1.59.07 4.73.07s3.5-.01 4.73-.07c.96-.04 1.48-.2 1.83-.34.46-.18.79-.39 1.14-.74.35-.35.56-.68.74-1.14.14-.35.3-.87.34-1.83.06-1.23.07-1.59.07-4.73s-.01-3.5-.07-4.73c-.04-.96-.2-1.48-.34-1.83a3 3 0 0 0-.74-1.14 3 3 0 0 0-1.14-.74c-.35-.14-.87-.3-1.83-.34C15.5 4.01 15.14 4 12 4Zm0 3.05a4.95 4.95 0 1 1 0 9.9 4.95 4.95 0 0 1 0-9.9Zm0 1.8a3.15 3.15 0 1 0 0 6.3 3.15 3.15 0 0 0 0-6.3Zm5.15-1.99a1.16 1.16 0 1 1-2.31 0 1.16 1.16 0 0 1 2.31 0Z" />
+            </svg>
+            @danibritt011
+          </a>
+
+          <!-- BIO: write your text here -->
+          <p class="creador__bio">
+            Still figuring it out, still building. I like taking things apart
+            just to see how they work, then putting them back together
+            better. Sutos Co. is how I turn curiosity into something real,
+            one project at a time.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PROJECTS ===================== -->
+    <section id="projects" class="section">
+      <p class="eyebrow reveal">What we're building</p>
+      <h2 class="section__title reveal">Projects</h2>
+
+      <div class="stats">
+        <div class="stat-card glass reveal">
+          <span class="stat-card__number">0</span>
+          <span class="stat-card__label">finished projects</span>
+        </div>
+        <div class="stat-card glass reveal">
+          <span class="stat-card__number">1</span>
+          <span class="stat-card__label">in progress</span>
+        </div>
+        <div class="stat-card glass reveal">
+          <span class="stat-card__number">2023</span>
+          <span class="stat-card__label">founded</span>
+        </div>
+      </div>
+
+      <div class="projects-grid">
+
+        <!--
+          To add a new project: copy this whole block (from
+          <article class="project-card ..."> to </article>), then update the
+          title, description, and badge status (e.g. "FINISHED" or
+          "IN PROGRESS").
+        -->
+        <article class="project-card glass reveal">
+          <div class="project-card__head">
+            <h3 class="project-card__title">gek.ai</h3>
+            <span class="badge badge--status">
+              <span class="badge__dot"></span> IN PROGRESS
+            </span>
+          </div>
+          <p class="project-card__desc">
+            An AI built as a tribute to XXXTentacion — a project that blends
+            natural language processing with the goal of keeping his voice
+            and legacy alive.
+          </p>
+        </article>
+
+        <!-- "Coming Soon" card: keep this until there's a finished project to show -->
+        <article class="project-card project-card--soon reveal">
+          <div class="project-card__head">
+            <h3 class="project-card__title">Coming Soon</h3>
+          </div>
+          <p class="project-card__desc">
+            Nothing's finished yet, but there's stuff in the works. Check
+            back soon for what's next.
+          </p>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ===================== CONTACT ===================== -->
+    <section id="contact" class="section">
+      <div class="card card--center glass reveal">
+        <p class="eyebrow">Let's talk</p>
+        <h2 class="section__title">Contact</h2>
+        <p class="contacto__text">
+          Got questions about Sutos Co., curious about a project, or just
+          want to say hi? Instagram's the best way to keep up.
+        </p>
+        <a href="https://instagram.com/sutosco" target="_blank" rel="noopener" class="btn btn--primary btn--large">
+          <svg viewBox="0 0 24 24" class="icon-instagram" aria-hidden="true">
+            <path d="M12 2.2c3.2 0 3.58.01 4.85.07 1.17.05 1.8.24 2.22.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.17.42.36 1.05.41 2.22.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.24 1.8-.41 2.22-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.17-1.05.36-2.22.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.24-2.22-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.17-.42-.36-1.05-.41-2.22-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.24-1.8.41-2.22.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.17 1.05-.36 2.22-.41C8.42 2.21 8.8 2.2 12 2.2Zm0 1.8c-3.14 0-3.5.01-4.73.07-.96.04-1.48.2-1.83.34-.46.18-.79.39-1.14.74-.35.35-.56.68-.74 1.14-.14.35-.3.87-.34 1.83-.06 1.23-.07 1.59-.07 4.73s.01 3.5.07 4.73c.04.96.2 1.48.34 1.83.18.46.39.79.74 1.14.35.35.68.56 1.14.74.35.14.87.3 1.83.34 1.23.06 1.59.07 4.73.07s3.5-.01 4.73-.07c.96-.04 1.48-.2 1.83-.34.46-.18.79-.39 1.14-.74.35-.35.56-.68.74-1.14.14-.35.3-.87.34-1.83.06-1.23.07-1.59.07-4.73s-.01-3.5-.07-4.73c-.04-.96-.2-1.48-.34-1.83a3 3 0 0 0-.74-1.14 3 3 0 0 0-1.14-.74c-.35-.14-.87-.3-1.83-.34C15.5 4.01 15.14 4 12 4Zm0 3.05a4.95 4.95 0 1 1 0 9.9 4.95 4.95 0 0 1 0-9.9Zm0 1.8a3.15 3.15 0 1 0 0 6.3 3.15 3.15 0 0 0 0-6.3Zm5.15-1.99a1.16 1.16 0 1 1-2.31 0 1.16 1.16 0 0 1 2.31 0Z" />
+          </svg>
+          @sutosco
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <img src="assets/logo.png" alt="Sutos Co. logo" class="footer__logo" onerror="this.classList.add('img-fallback')" />
+    <p class="footer__text">© 2026 Sutos Co. — All rights reserved.</p>
+    <a href="https://instagram.com/sutosco" target="_blank" rel="noopener" class="footer__link">@sutosco</a>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
